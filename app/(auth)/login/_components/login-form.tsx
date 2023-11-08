@@ -61,8 +61,8 @@ export function UserAuthLoginForm({
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed to submit data",
-        description: "Make sure all fields are filled up.",
+        title: "Invalid credentials",
+        description: "Try again.",
         variant: "destructive",
       });
     }

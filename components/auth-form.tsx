@@ -82,7 +82,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     <FormControl>
                       <Input
                         id="name"
-                        placeholder="John DOe"
+                        placeholder="John Doe"
                         type="text"
                         autoCorrect="off"
                         disabled={isLoading}
