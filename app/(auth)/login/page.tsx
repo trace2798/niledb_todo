@@ -1,4 +1,4 @@
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { FC } from "react";
 import { UserAuthLoginForm } from "./_components/login-form";
 
@@ -9,8 +9,14 @@ const page: FC<pageProps> = ({}) => {
     <>
       <div className="flex w-full h-screen justify-center items-center">
         <Card className="min-w-sm max-w-md p-10">
-          <CardHeader>Log in</CardHeader>
+          <CardHeader className="text-2xl p-0 text-center">Log in</CardHeader>
           <UserAuthLoginForm />
+          <CardFooter className="mt-3 text-sm">
+            Don't have an account?{" "}
+            <a href="/sign-up" className="text-indigo-400 hover:underline">
+              Sign Up
+            </a>
+          </CardFooter>
         </Card>
       </div>
     </>

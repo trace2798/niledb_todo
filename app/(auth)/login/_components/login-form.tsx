@@ -4,16 +4,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/icons"
+import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import axios from "axios";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -21,6 +13,15 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import * as z from "zod";
 
 interface UserAuthLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -56,7 +57,6 @@ export function UserAuthLoginForm({
         description: "Successfully logged in",
         variant: "default",
       });
-      router.refresh();
       router.push("/dashboard");
     } catch (error) {
       console.error(error);
@@ -128,10 +128,8 @@ export function UserAuthLoginForm({
               />
             </div>
             <Button disabled={isLoading}>
-              {/* {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )} */}
-              Sign In
+              {isLoading && <Spinner />}
+              Log In
             </Button>
           </div>
         </form>

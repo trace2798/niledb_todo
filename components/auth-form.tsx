@@ -15,6 +15,7 @@ import { useToast } from "./ui/use-toast";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Spinner } from "./spinner";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -68,7 +69,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col w-full grid-cols-12 gap-2 px-2 py-4 mt-5 border rounded-lg md:px-4 focus-within:shadow-sm"
         >
-          <div className="grid gap-2">
+          <div className="grid gap-3">
             <div className="grid gap-1">
               <Label className="name" htmlFor="name">
                 Name
@@ -144,9 +145,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               />
             </div>
             <Button disabled={isLoading}>
-              {/* {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )} */}
+              {isLoading && <Spinner />}
               Sign Up with Email
             </Button>
           </div>
