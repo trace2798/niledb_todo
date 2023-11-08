@@ -1,8 +1,8 @@
-import { cookies } from 'next/headers';
-import jwtDecode from 'jwt-decode';
-import { cookieOptions, NileJWTPayload, toCookieData } from '@/lib/AuthUtils';
-import { revalidatePath } from 'next/cache';
+import { cookieOptions, NileJWTPayload } from '@/lib/AuthUtils';
 import nile from '@/lib/NileServer';
+import jwtDecode from 'jwt-decode';
+import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
 
 // Note that this route must exist in this exact location for user/password signup to work
 // Nile's SignUp component posts to this route, we call Nile's signup API via the SDK 
