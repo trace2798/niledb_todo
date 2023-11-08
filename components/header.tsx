@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = ({}) => {
         />
         <div className="flex">
           <ModeToggle />
-          <div className="ml-3">
+          <div className="ml-3 text-sm">
             <a
               href="https://thenile.dev"
               target="_blank"
