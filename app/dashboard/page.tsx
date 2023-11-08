@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import UserAccountNav from "@/components/user-account-nav";
 import { configureNile } from "@/lib/AuthUtils";
 import nile from "@/lib/NileServer";
 import { cookies } from "next/headers";
@@ -26,12 +27,19 @@ const page: FC<pageProps> = async ({}) => {
       .join("users.tenant_users", "tenants.id", "=", "tenant_users.tenant_id")
       .where("tenant_users.user_id", "=", nile.userId);
   }
+  // const user = await nile.db("users").where(`id=${nile.userId}`);
+  // console.log(user);
   return (
     <>
       <div>
         <a href="/api/logout">
           <Button>Logout</Button>
         </a>
+        <UserAccountNav
+          email="email"
+          name="Name"
+          imageUrl="https://avatars.githubusercontent.com/u/113078518?v=4"
+        />
         {/* {userToken ? (
           // <AuthDataPanel token={userToken} />
           <h1>Hi</h1>
