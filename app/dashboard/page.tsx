@@ -27,20 +27,21 @@ const page: FC<pageProps> = async ({}) => {
       .join("users.tenant_users", "tenants.id", "=", "tenant_users.tenant_id")
       .where("tenant_users.user_id", "=", nile.userId);
   }
-  const userInfo = await nile.db("users.users").where("id", "=", nile.userId);
-  console.log(userInfo);
-  const email = userInfo[0].email;
-  const picture = userInfo[0].picture;
-  const name = userInfo[0].name;
+  // const userInfo = await nile.db("users.users").where("id", "=", nile.userId);
+  // console.log(userInfo);
+  // const email = userInfo[0].email;
+  // const picture = userInfo[0].picture;
+  // const name = userInfo[0].name;
+
   return (
     <>
       <div>
         {/* <a href="/api/logout">
           <Button>Logout</Button>
         </a> */}
-        <div className="mx-10">
+        {/* <div className="mx-10">
           <UserAccountNav email={email} name={name} imageUrl={picture} />
-        </div>
+        </div> */}
         {/* {userToken ? (
           // <AuthDataPanel token={userToken} />
           <h1>Hi</h1>
