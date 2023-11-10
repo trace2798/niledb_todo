@@ -5,7 +5,7 @@ interface FooterProps {}
 const Footer: FC<FooterProps> = ({}) => {
   return (
     <>
-      <div className="mx-[10vw] grid text-center space-x-7 py-2 lg:mb-0 md:grid-cols-2 items-center lg:grid-cols-4 lg:text-left">
+      <div className="mx-[10vw] fixed bottom-0 grid text-center space-x-7 py-2 lg:mb-0 md:grid-cols-2 items-center lg:grid-cols-4 lg:text-left">
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
