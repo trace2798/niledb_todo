@@ -1,7 +1,10 @@
 import { Heading } from "@/components/heading";
+import { Button } from "@/components/ui/button";
 import { configureNile } from "@/lib/AuthUtils";
 import nile from "@/lib/NileServer";
+import { ChevronLeft } from "lucide-react";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -19,6 +22,13 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
   console.log(tenant);
   return (
     <>
+      <div className="mx-[5vw]">
+        <Link href="/dashboard">
+          <Button variant="ghost">
+            <ChevronLeft className="w-4 h-4" /> Back
+          </Button>
+        </Link>
+      </div>
       <div className="mx-[5vw] md:mx-[10vw]">
         <Heading title={tenant.name} />
       </div>
