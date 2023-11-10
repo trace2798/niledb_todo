@@ -18,7 +18,7 @@ export const ModalProvider = () => {
     <>
       {/* AddTenantModal */}
       {/* Add Todo Modal */}
-      <TenantsModal/>
+      <TenantsModal />
     </>
   );
 };

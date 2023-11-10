@@ -5,6 +5,7 @@ import nile from "@/lib/NileServer";
 import { ChevronLeft } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import { AddTask } from "./_components/add-task";
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -22,15 +23,16 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
   console.log(tenant);
   return (
     <>
-      <div className="mx-[5vw]">
+      <div>
         <Link href="/dashboard">
           <Button variant="ghost">
             <ChevronLeft className="w-4 h-4" /> Back
           </Button>
         </Link>
       </div>
-      <div className="mx-[5vw] md:mx-[10vw]">
+      <div className="w-full flex w-fill items-center justify-between">
         <Heading title={tenant.name} />
+        <AddTask tenantId={tenant.id} />
       </div>
     </>
   );
