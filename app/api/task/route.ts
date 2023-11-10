@@ -1,7 +1,5 @@
-import { configureNile, cookieOptions, NileJWTPayload } from "@/lib/AuthUtils";
+import { configureNile } from "@/lib/AuthUtils";
 import nile from "@/lib/NileServer";
-import jwtDecode from "jwt-decode";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -41,6 +39,23 @@ export async function DELETE(req: Request) {
     configureNile(cookies().get("authData"), tenantId);
     await nile.db("todos").delete().where({ id: data.id });
     return new NextResponse("Successfully Deleted", { status: 200 });
+  } catch (error) {
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+export async function PATCH(req: Request) {
+  try {
+    const data = await req.json();
+    console.log(data);
+    const { id, tenantId, complete } = data.data; // Access nested data
+    configureNile(cookies().get("authData"), tenantId);
+    console.log("@");
+    await nile
+      .db("todos")
+      .update({ complete: complete }) // Use the complete variable
+      .where({ id: id }); // Use the id variable
+    return new NextResponse("Successfully Updated", { status: 200 }); // Change message to "Successfully Updated"
   } catch (error) {
     return new NextResponse("Internal Error", { status: 500 });
   }
