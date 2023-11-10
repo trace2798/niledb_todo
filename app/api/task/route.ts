@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized");
     }
     console.log(body);
-    
+
     await nile.db("todos").insert({
       tenant_id: body.tenantId,
       task: body.title,
@@ -30,6 +30,18 @@ export async function POST(req: Request) {
     return new NextResponse("Task Created", { status: 200 });
   } catch (error) {
     console.log(error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const data = await req.json();
+    const tenantId = data.tenantId;
+    configureNile(cookies().get("authData"), tenantId);
+    await nile.db("todos").delete().where({ id: data.id });
+    return new NextResponse("Successfully Deleted", { status: 200 });
+  } catch (error) {
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

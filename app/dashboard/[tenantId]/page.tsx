@@ -42,6 +42,7 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
         {todos.map((todo: { id: string; task: string; complete: boolean }) => (
           <TodoCard
             key={todo.id}
+            tenantId={params.tenantId}
             complete={todo.complete}
             id={todo.id}
             task={todo.task}
