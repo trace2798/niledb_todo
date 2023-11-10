@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { NileProvider } from "@niledatabase/react";
 import { Toaster } from "@/components/ui/toaster";
+import { ModalProvider } from "@/components/model-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ModalProvider />
           <Header />
           <Toaster />
           {children}

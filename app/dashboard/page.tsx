@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import UserAccountNav from "@/components/user-account-nav";
 import { configureNile } from "@/lib/AuthUtils";
 import nile from "@/lib/NileServer";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { FC } from "react";
+import AddTenantButton from "./_components/AddTenantButton";
 
 interface pageProps {}
 export const dynamic = "force-dynamic";
@@ -36,10 +36,14 @@ const page: FC<pageProps> = async ({}) => {
   return (
     <>
       <div>
-        <div className="mx-10">
+        <div className="mx-10 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl">Post iT</h1>
+          </div>
           <UserAccountNav email={email} name={name} imageUrl={picture} />
         </div>
         Page
+        <AddTenantButton />
       </div>
     </>
   );
