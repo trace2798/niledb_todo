@@ -8,6 +8,7 @@ import AddTenantButton from "./_components/AddTenantButton";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 interface pageProps {}
 export const dynamic = "force-dynamic";
@@ -58,10 +59,19 @@ const page: FC<pageProps> = async ({}) => {
               </h1>
             </>
           )}
-          {tenants.map((tenant: string, index: string) => (
-            <div key={index}>
-              <h1></h1>
-            </div>
+          {tenants.map((tenant: { id: string; name: string }) => (
+            <Link
+              href={`/dashboard/${tenant.id}`}
+              className="group space-y-3 mt-3"
+            >
+              <Card
+                key={tenant.id}
+                className="p-5 text-center group-hover:text-indigo-400"
+              >
+                <h1>{tenant.name}</h1>
+                <h1>{tenant.id}</h1>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
