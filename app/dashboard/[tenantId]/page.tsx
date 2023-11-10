@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { AddTask } from "./_components/add-task";
 import { Card } from "@/components/ui/card";
+import TodoCard from "./_components/todo-card";
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -37,15 +38,14 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
         <Heading title={tenant.name} />
         <AddTask tenantId={tenant.id} />
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center space-y-3">
         {todos.map((todo: { id: string; task: string; complete: boolean }) => (
-          <Card
+          <TodoCard
             key={todo.id}
-            className="p-5 text-center min-w-[350px] group-hover:text-indigo-400 max-w-md"
-          >
-            <h1>{todo.task}</h1>
-            <h1>{todo.complete ? <h1>Done</h1> : <h1>Not done</h1>}</h1>
-          </Card>
+            complete={todo.complete}
+            id={todo.id}
+            task={todo.task}
+          />
         ))}
       </div>
     </>
