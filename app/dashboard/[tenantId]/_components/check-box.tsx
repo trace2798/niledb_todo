@@ -26,24 +26,16 @@ export const CheckBox = ({
     await axios.patch("/api/task", { data: { id, tenantId, complete } });
     toast({
       title: "Task Status Updated",
-      description: "Task updatedF",
+      description: "Task updated",
       variant: "default",
     });
     setLoading(false);
     router.refresh();
   };
 
-  //   if (loading) {
-  //     return (
-  //       <div className="h-full flex flex-col items-center justify-center p-4">
-  //         <Spinner size="lg" />
-  //         <h1 className="text-xs">Deleting Todo</h1>
-  //       </div>
-  //     );
-  //   }
   return (
     <>
-      <Checkbox onCheckedChange={() => handleClick(id)} />
+      <Checkbox checked={complete} onCheckedChange={() => handleClick(id)} />
     </>
   );
 };

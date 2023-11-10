@@ -18,7 +18,7 @@ const TodoCard: FC<TodoCardProps> = ({ tenantId, id, task, complete }) => {
         key={id}
         className="p-3 text-center min-w-[350px] group-hover:text-indigo-400 max-w-md"
       >
-        <CardContent className="p-0 flex justify-between">
+        <CardContent className="p-0 flex justify-between items-center">
           <CheckBox id={id} tenantId={tenantId} complete={complete} />
           <h1>{task}</h1>
           <TrashBox id={id} tenantId={tenantId} />

@@ -53,7 +53,7 @@ export async function PATCH(req: Request) {
     console.log("@");
     await nile
       .db("todos")
-      .update({ complete: complete }) // Use the complete variable
+      .update({ complete: !complete }) // Use the complete variable
       .where({ id: id }); // Use the id variable
     return new NextResponse("Successfully Updated", { status: 200 }); // Change message to "Successfully Updated"
   } catch (error) {
