@@ -18,11 +18,7 @@ interface UserAccountNavProps {
   imageUrl: string;
 }
 
-const UserAccountNav =  ({
-  email,
-  imageUrl,
-  name,
-}: UserAccountNavProps) => {
+const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -57,7 +53,7 @@ const UserAccountNav =  ({
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className="hover:cursor-pointer">
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
 
