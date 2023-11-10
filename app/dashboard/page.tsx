@@ -5,6 +5,9 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { FC } from "react";
 import AddTenantButton from "./_components/AddTenantButton";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Label } from "@/components/ui/label";
 
 interface pageProps {}
 export const dynamic = "force-dynamic";
@@ -32,18 +35,35 @@ const page: FC<pageProps> = async ({}) => {
   const email = userInfo[0].email;
   const picture = userInfo[0].picture;
   const name = userInfo[0].name;
-
+  console.log(tenants);
   return (
     <>
       <div>
         <div className="mx-10 flex justify-between items-center">
           <div>
-            <h1 className="text-3xl">Post iT</h1>
+            <h1 className="text-3xl">TODO</h1>
           </div>
           <UserAccountNav email={email} name={name} imageUrl={picture} />
         </div>
-        Page
-        <AddTenantButton />
+        <div className="ml-[5vw] flex flex-col justify-center items-center">
+          <Card className="max-w-sm p-3 flex items-center justify-center">
+            <AddTenantButton />
+          </Card>
+          <Separator className="max-w-xl my-5" />
+          <Label className="text-lg">Your Tenants</Label>
+          {tenants.length === 0 && (
+            <>
+              <h1 className="mt-3">
+                Do not have any tenants. Add one to get started
+              </h1>
+            </>
+          )}
+          {tenants.map((tenant: string, index: string) => (
+            <div key={index}>
+              <h1></h1>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
