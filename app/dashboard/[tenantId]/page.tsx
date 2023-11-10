@@ -38,7 +38,7 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
         <Heading title={tenant.name} />
         <AddTask tenantId={tenant.id} />
       </div>
-      <div className="grid grid-cols-1 space-y-3">
+      <div className="flex flex-col justify-center items-center space-y-3 mb-24">
         {todos.map((todo: { id: string; task: string; complete: boolean }) => (
           <TodoCard
             key={todo.id}
