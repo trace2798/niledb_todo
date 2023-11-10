@@ -15,6 +15,12 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized");
     }
     console.log(body);
+    
+    await nile.db("todos").insert({
+      tenant_id: body.tenantId,
+      task: body.title,
+      complete: body.complete,
+    });
     // const createTenantResponse = await nile.api.tenants.createTenant({
     //   name: body.name,
     // });
@@ -23,6 +29,7 @@ export async function POST(req: Request) {
     // console.log("created tenant with tenantID: ", tenantID);
     return new NextResponse("Task Created", { status: 200 });
   } catch (error) {
+    console.log(error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -31,8 +31,8 @@ interface AddTaskProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const formSchema = z.object({
-  task: z.string().min(2).max(50),
   tenantId: z.string().min(2).max(50),
+  title: z.string().min(2).max(50),
   complete: z.boolean(),
 });
 
@@ -43,8 +43,8 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      task: "",
       tenantId: tenantId,
+      title: "",
       complete: false,
     },
   });
@@ -95,12 +95,12 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
                 </Label>
                 <FormField
                   control={form.control}
-                  name="task"
+                  name="title"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <Input
-                          id="name"
+                          id="title"
                           placeholder="Get this working"
                           type="text"
                           autoCorrect="off"
