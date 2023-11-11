@@ -5,6 +5,7 @@ import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import { updateTodoStatus } from "./todo_action";
 
 export const CheckBox = ({
   id,
@@ -23,7 +24,8 @@ export const CheckBox = ({
     console.log("INSIDE");
     setLoading(true);
     console.log("CHANGE");
-    await axios.patch("/api/task", { data: { id, tenantId, complete } });
+    // await axios.patch("/api/task", { data: { id, tenantId, complete } });
+    await updateTodoStatus(tenantId, id, complete);
     toast({
       title: "Task Status Updated",
       description: "Task updated",

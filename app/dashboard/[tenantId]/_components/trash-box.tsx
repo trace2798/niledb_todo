@@ -7,6 +7,7 @@ import { Spinner } from "@/components/spinner";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useState } from "react";
+import { deleteTodo } from "./todo_action";
 
 export const TrashBox = ({
   id,
@@ -21,7 +22,8 @@ export const TrashBox = ({
   const [loading, setLoding] = useState(false);
   const onRemove = async (id: string) => {
     setLoding(true);
-    await axios.delete("/api/task", { data: { id, tenantId } });
+    // await axios.delete("/api/task", { data: { id, tenantId } });
+    await deleteTodo(tenantId, id);
     toast({
       title: "Task Deleted",
       description: "Task deleted",

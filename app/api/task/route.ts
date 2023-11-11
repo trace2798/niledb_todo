@@ -16,15 +16,9 @@ export async function POST(req: Request) {
 
     await nile.db("todos").insert({
       tenant_id: body.tenantId,
-      task: body.title,
+      title: body.title,
       complete: body.complete,
     });
-    // const createTenantResponse = await nile.api.tenants.createTenant({
-    //   name: body.name,
-    // });
-    // const tenant = await createTenantResponse.json();
-    // const tenantID = tenant.id;
-    // console.log("created tenant with tenantID: ", tenantID);
     return new NextResponse("Task Created", { status: 200 });
   } catch (error) {
     console.log(error);
