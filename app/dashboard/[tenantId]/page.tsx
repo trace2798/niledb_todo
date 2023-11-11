@@ -34,11 +34,11 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
           </Button>
         </Link>
       </div>
-      <div className="w-full flex w-fill items-center justify-between">
+      <div className="w-full flex flex-col md:flex-row w-fill items-center justify-between mb-3 md:mb-0">
         <Heading title={tenant.name} />
         <AddTask tenantId={tenant.id} />
       </div>
-      <div className="flex flex-col justify-center items-center space-y-3 mb-24">
+      <div className="flex flex-col justify-center items-center space-y-3 mb-24 overflow-hidden">
         {todos.map((todo: { id: string; title: string; complete: boolean }) => (
           <TodoCard
             key={todo.id}
