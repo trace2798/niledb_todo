@@ -1,5 +1,6 @@
 "use client";
-
+import { Spinner } from "@/components/spinner";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,19 +14,15 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
-import { Spinner } from "@/components/spinner";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
-import { buttonVariants } from "@/components/ui/button";
-import { addTodo, updateTodoTitle } from "./todo_action";
+import { updateTodoTitle } from "./todo_action";
 
 interface EditTitleModalProps extends React.HTMLAttributes<HTMLDivElement> {
   tenantId: string;
