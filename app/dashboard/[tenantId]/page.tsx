@@ -6,7 +6,6 @@ import { ChevronLeft } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { AddTask } from "./_components/add-task";
-import { Card } from "@/components/ui/card";
 import TodoCard from "./_components/todo-card";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +22,7 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
   const resp = await nile.api.tenants.getTenant();
   const tenant = await resp.json();
   console.log(tenant);
-  const todos = await nile.db("todos").select("*").orderBy("created_at"); // no need for where clause because we previously set Nile context
+  const todos = await nile.db("todos").select("*").orderBy("created_at","desc"); // no need for where clause because we previously set Nile context
   console.log(todos);
   return (
     <>

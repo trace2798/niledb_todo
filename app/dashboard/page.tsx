@@ -63,6 +63,7 @@ const page: FC<pageProps> = async ({}) => {
             <Link
               href={`/dashboard/${tenant.id}`}
               className="group space-y-3 mt-3"
+              key={tenant.id}
             >
               <Card
                 key={tenant.id}

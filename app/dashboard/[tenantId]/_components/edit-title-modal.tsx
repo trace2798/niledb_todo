@@ -65,12 +65,11 @@ export function EditTitleModal({
       await updateTodoTitle(tenantId, values.id, values.title);
       form.reset();
       toast({
-        title: "Task Created",
-        description: "Successfully task created",
+        title: "Task Updated",
+        description: "Task successfully updated",
         variant: "default",
       });
       router.refresh();
-      // router.push("/dashboard");
     } catch (error) {
       console.error(error);
       toast({
@@ -120,6 +119,7 @@ export function EditTitleModal({
                     </FormItem>
                   )}
                 />
+
                 <Button disabled={isLoading} className="mt-5">
                   {isLoading && <Spinner />}
                   Edit Task
