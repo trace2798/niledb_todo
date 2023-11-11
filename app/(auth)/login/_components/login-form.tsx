@@ -69,7 +69,7 @@ export function UserAuthLoginForm({
   };
   const isLoading = form.formState.isSubmitting;
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
+    <div className={cn("grid gap-6 min-w-[300px]", className)} {...props}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
