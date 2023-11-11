@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { buttonVariants } from "@/components/ui/button";
+import { addTodo } from "./todo_action";
 
 interface AddTaskProps extends React.HTMLAttributes<HTMLDivElement> {
   tenantId: string;
@@ -54,7 +55,8 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
     try {
       setLoading(true);
       console.log(values, "VALUES VALUES");
-      const response = await axios.post(`/api/task`, values);
+      // const response = await axios.post(`/api/task`, values);
+      await addTodo(tenantId, values.title);
       form.reset();
       toast({
         title: "Task Created",

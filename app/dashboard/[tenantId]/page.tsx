@@ -23,7 +23,7 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
   const resp = await nile.api.tenants.getTenant();
   const tenant = await resp.json();
   console.log(tenant);
-  const todos = await nile.db("todos").select("*").orderBy("task"); // no need for where clause because we previously set Nile context
+  const todos = await nile.db("todos").select("*").orderBy("created_at"); // no need for where clause because we previously set Nile context
   console.log(todos);
   return (
     <>
@@ -39,13 +39,13 @@ const TenantIdPage = async ({ params }: { params: { tenantId: string } }) => {
         <AddTask tenantId={tenant.id} />
       </div>
       <div className="flex flex-col justify-center items-center space-y-3 mb-24">
-        {todos.map((todo: { id: string; task: string; complete: boolean }) => (
+        {todos.map((todo: { id: string; title: string; complete: boolean }) => (
           <TodoCard
             key={todo.id}
             tenantId={params.tenantId}
             complete={todo.complete}
             id={todo.id}
-            task={todo.task}
+            title={todo.title}
           />
         ))}
       </div>

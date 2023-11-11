@@ -6,12 +6,12 @@ import { CheckBox } from "./check-box";
 
 interface TodoCardProps {
   id: string;
-  task: string;
+  title: string;
   complete: boolean;
   tenantId: string;
 }
 
-const TodoCard: FC<TodoCardProps> = ({ tenantId, id, task, complete }) => {
+const TodoCard: FC<TodoCardProps> = ({ tenantId, id, title, complete }) => {
   return (
     <>
       <Card
@@ -20,7 +20,7 @@ const TodoCard: FC<TodoCardProps> = ({ tenantId, id, task, complete }) => {
       >
         <CardContent className="p-0 flex justify-between items-center">
           <CheckBox id={id} tenantId={tenantId} complete={complete} />
-          <h1>{task}</h1>
+          <h1>{title}</h1>
           <TrashBox id={id} tenantId={tenantId} />
         </CardContent>
       </Card>
