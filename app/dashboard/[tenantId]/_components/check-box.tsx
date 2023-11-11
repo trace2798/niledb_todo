@@ -1,8 +1,6 @@
 "use client";
-import { Spinner } from "@/components/spinner";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { updateTodoStatus } from "./todo_action";

@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Spinner } from "@/components/spinner";
@@ -25,19 +25,27 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { buttonVariants } from "@/components/ui/button";
-import { addTodo } from "./todo_action";
+import { addTodo, updateTodoTitle } from "./todo_action";
 
-interface AddTaskProps extends React.HTMLAttributes<HTMLDivElement> {
+interface EditTitleModalProps extends React.HTMLAttributes<HTMLDivElement> {
   tenantId: string;
+  title: string;
+  id: string;
 }
 
 const formSchema = z.object({
   tenantId: z.string().min(2).max(50),
   title: z.string().min(2).max(256),
-  complete: z.boolean(),
+  id: z.string().min(2).max(50),
 });
 
-export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
+export function EditTitleModal({
+  className,
+  tenantId,
+  title,
+  id,
+  ...props
+}: EditTitleModalProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -45,8 +53,8 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       tenantId: tenantId,
-      title: "",
-      complete: false,
+      title: title,
+      id: id,
     },
   });
   type FormData = z.infer<typeof formSchema>;
@@ -56,7 +64,8 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
       setLoading(true);
       console.log(values, "VALUES VALUES");
       // const response = await axios.post(`/api/task`, values);
-      await addTodo(tenantId, values.title);
+      //   await addTodo(tenantId, values.title);
+      await updateTodoTitle(tenantId, values.id, values.title);
       form.reset();
       toast({
         title: "Task Created",
@@ -78,12 +87,12 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
 
   return (
     <Dialog>
-      <DialogTrigger className={buttonVariants({ variant: "outline" })}>
-        Add Task
+      <DialogTrigger className="hover:text-indigo-400 hover:cursor-pointer max-w-sm mx-5">
+        {title}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="border-b pb-3">
-          <h2 className="text-lg font-medium">Add a Task</h2>
+          <h2 className="text-lg font-medium">Edit Task</h2>
         </DialogHeader>
         <Form {...form}>
           <form
@@ -103,7 +112,7 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
                       <FormControl>
                         <Input
                           id="title"
-                          placeholder="Get this working"
+                          placeholder={title}
                           type="text"
                           autoCorrect="off"
                           disabled={isLoading}
@@ -116,7 +125,7 @@ export function AddTask({ className, tenantId, ...props }: AddTaskProps) {
                 />
                 <Button disabled={isLoading} className="mt-5">
                   {isLoading && <Spinner />}
-                  Add Task
+                  Edit Task
                 </Button>
               </div>
             </div>

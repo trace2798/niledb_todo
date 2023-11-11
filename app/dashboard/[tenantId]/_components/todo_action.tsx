@@ -74,3 +74,30 @@ export async function updateTodoStatus(
     return { message: "Failed to add todo" };
   }
 }
+
+export async function updateTodoTitle(
+  tenantId: string,
+  id: string,
+  title: string
+) {
+  configureNile(cookies().get("authData"), tenantId);
+  console.log(
+    "Updating Todo " +
+      title +
+      " for tenant:" +
+      nile.tenantId +
+      " for user:" +
+      nile.userId
+  );
+  try {
+    // const id = uuid.v4();
+    // need to set tenant ID because it is a required field
+    await nile
+      .db("todos")
+      .update({ title: title }) // Use the complete variable
+      .where({ id: id }); // Use the id variable
+  } catch (e) {
+    console.error(e);
+    return { message: "Failed to add todo" };
+  }
+}
